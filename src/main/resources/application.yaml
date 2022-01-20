@@ -1,0 +1,23 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /weather-service
+
+openweather:
+  api:
+    url: http://api.openweathermap.org/data/2.5/weather
+    key: ENC(Y8WmGy4hS/uFcxfGxq/jM6E4hdtPhgTp8rK0IQZOxKsqaY24BfhBkDdQ2EO5iwHyDe7yXpepedRjO+sUn5bJpuau5bo/jDh5rCJZ8FmMY3E=)
+
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql-standalone:3306/test
+    username: sa
+    password: ENC(Cfv16D9mgvHALgLBmK7n+tzGdBl+0z2R6n6hGTpOyTfXKtuDy+nB1sHdoDlDFapU)
+
+  liquibase:
+    change-log: classpath:db/changelog/changelog-master.xml
+
+jasypt:
+  encryptor:
+    password: <INSERT_PASSWORD>
