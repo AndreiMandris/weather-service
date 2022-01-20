@@ -39,9 +39,7 @@ public class OpenWeatherProvider implements WeatherProvider {
                 uriComponentsBuilder.toUriString(),
                 OpenWeatherResponse.class);
         if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
-            Weather weather = OpenWeatherMapper.toWeather(response.getBody());
-            log.debug("Received {} ", weather);
-            return weather;
+            return OpenWeatherMapper.toWeather(response.getBody());
         } else {
             throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
