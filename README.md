@@ -15,4 +15,4 @@ Start weather-service container:
 
 `docker run -p 8090:8090 --name weather-service --link mysql-standalone:mysql -d weather-service`
 
-The API can be accessed through the Swagger UI located at localhost:8090/swagger-ui.html
+The API can be accessed through the Swagger UI located at localhost:8090/weather-service/swagger-ui.html
