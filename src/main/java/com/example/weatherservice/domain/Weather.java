@@ -1,9 +1,6 @@
 package com.example.weatherservice.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -14,6 +11,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 @Table(name = "WEATHER")
 public class Weather {
 
@@ -52,6 +50,7 @@ public class Weather {
     @Column(name = "CLOUDS_ALL")
     private Integer cloudsAll;
 
+    @EqualsAndHashCode.Exclude
     @CreationTimestamp
     @Column(name = "QUERIED_AT")
     private LocalDateTime queriedAt;
