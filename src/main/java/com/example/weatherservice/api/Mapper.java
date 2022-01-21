@@ -1,6 +1,5 @@
-package com.example.weatherservice.infrastructure.deferredresult;
+package com.example.weatherservice.api;
 
-import com.example.weatherservice.api.WeatherDto;
 import com.example.weatherservice.domain.Weather;
 
 public class Mapper {

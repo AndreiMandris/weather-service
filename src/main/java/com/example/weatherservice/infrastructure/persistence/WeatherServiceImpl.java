@@ -15,12 +15,7 @@ public class WeatherServiceImpl implements WeatherService {
 
     @Override
     @Transactional
-    public void saveWeather(Weather weather) {
-        weatherRepository.save(weather);
-    }
-
-    @Override
-    public List<Weather> getAll() {
-        return weatherRepository.findAll();
+    public Weather saveWeather(Weather weather) {
+        return weatherRepository.save(weather);
     }
 }

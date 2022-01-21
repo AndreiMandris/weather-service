@@ -7,14 +7,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.Assert;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class WeatherProviderApplicationTests {
+class ContextLoadsTest {
 
     @Autowired
     private WeatherController weatherController;
 
     @Test
     void contextLoads() {
-        Assert.notNull(weatherController);
+        Assert.notNull(weatherController, "WeatherController");
     }
 
 }

@@ -28,20 +28,21 @@ public class OpenWeatherProvider implements WeatherProvider {
     @Retryable(value = HttpServerErrorException.class,
             backoff = @Backoff(delay = 100L, maxDelay = 1500L, random = true, multiplier = 0.3))
     public Weather getWeatherByCity(String city) {
-
-        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(openWeatherConfigProp.getUrl())
-                .queryParam("q", city)
-                .queryParam("appid", openWeatherConfigProp.getKey())
-                .queryParam("units", "metric");
-
         log.debug("Calling {} for {} city", openWeatherConfigProp.getUrl(), city);
         ResponseEntity<OpenWeatherResponse> response = restTemplate.getForEntity(
-                uriComponentsBuilder.toUriString(),
+                getUriComponentsBuilder(city).toUriString(),
                 OpenWeatherResponse.class);
         if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
             return OpenWeatherMapper.toWeather(response.getBody());
         } else {
             throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    private UriComponentsBuilder getUriComponentsBuilder(String city) {
+        return UriComponentsBuilder.fromHttpUrl(openWeatherConfigProp.getUrl())
+                .queryParam("q", city)
+                .queryParam("appid", openWeatherConfigProp.getKey())
+                .queryParam("units", "metric");
     }
 }

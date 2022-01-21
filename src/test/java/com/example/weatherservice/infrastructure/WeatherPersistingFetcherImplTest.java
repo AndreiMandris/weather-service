@@ -2,7 +2,6 @@ package com.example.weatherservice.infrastructure;
 
 import com.example.weatherservice.application.WeatherProvider;
 import com.example.weatherservice.application.WeatherService;
-import com.example.weatherservice.infrastructure.deferredresult.DeferredResultManagerImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
@@ -10,15 +9,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.context.request.async.DeferredResult;
 
 @RunWith(SpringRunner.class)
-public class DeferredResultManagerImplTest {
+public class WeatherPersistingFetcherImplTest {
 
     private static final String CITY_NAME = "city";
 
     @InjectMocks
-    private DeferredResultManagerImpl deferredResultManager;
+    private WeatherPersistingFetcherImpl weatherPersistingFetcher;
 
     @Mock
     private WeatherService weatherService;
@@ -28,7 +26,7 @@ public class DeferredResultManagerImplTest {
 
     @Test
     public void testSupplyAsyncWeatherDto() {
-        deferredResultManager.saveAsyncWeatherDto(new DeferredResult<>(), CITY_NAME);
+        weatherPersistingFetcher.fetchAndSaveWeather(CITY_NAME);
         Mockito.verify(weatherService).saveWeather(ArgumentMatchers.any());
         Mockito.verify(weatherProvider).getWeatherByCity(CITY_NAME);
     }

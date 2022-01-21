@@ -1,4 +1,4 @@
-package com.example.weatherservice;
+package com.example.weatherservice.service;
 
 import com.example.weatherservice.application.WeatherService;
 import com.example.weatherservice.domain.Weather;
@@ -29,8 +29,7 @@ public class WeatherServiceTest {
 
     @Test
     public void saveWeatherTest() {
-        Weather weather = buildWeather();
-        weatherService.saveWeather(weather);
-        Assertions.assertTrue(weatherService.getAll().stream().anyMatch(weather::equals));
+        Weather expectedWeather = buildWeather();
+        Assertions.assertEquals(expectedWeather, weatherService.saveWeather(expectedWeather));
     }
 }

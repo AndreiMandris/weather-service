@@ -3,6 +3,8 @@
 
 Setup:
 
+`mvn clean install`
+
 Start mysql container:
 
 `docker pull mysql`
@@ -10,6 +12,8 @@ Start mysql container:
 `docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=test -e MYSQL_USER=sa -e MYSQL_PASSWORD=password -d mysql:latest`
 
 Start weather-service container:
+
+Replace the jasypt.encryptor.password property.
 
 `docker build . -t weather-service`
 
